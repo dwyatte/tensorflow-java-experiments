@@ -1,0 +1,11 @@
+TENSORFLOW_JAR=libtensorflow-2.3.0.jar
+TENSORFLOW_JNI=libtensorflow_jni-cpu-darwin-x86_64-2.3.0.tar.gz
+# TENSORFLOW_JNI=libtensorflow_jni-cpu-linux-x86_64-2.3.0.tar.gz
+
+wget https://storage.googleapis.com/tensorflow/libtensorflow/${TENSORFLOW_JAR} -O ${TENSORFLOW_JAR}
+wget https://storage.googleapis.com/tensorflow/libtensorflow/${TENSORFLOW_JNI} -O ${TENSORFLOW_JNI}
+
+mkdir jni && tar -xzf ${TENSORFLOW_JNI} -C jni
+
+javac -cp ${TENSORFLOW_JAR} src/main/java/HelloTensorFlow.java -d .
+java -cp ${TENSORFLOW_JAR}:. -Djava.library.path=jni HelloTensorFlow

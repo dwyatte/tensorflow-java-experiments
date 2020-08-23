@@ -1,4 +1,3 @@
-import os
 import tensorflow as tf
 
 inputs = tf.placeholder(tf.int32, [None, 1])
